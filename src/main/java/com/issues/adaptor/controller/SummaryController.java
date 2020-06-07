@@ -19,6 +19,6 @@ public class SummaryController {
 
 	@PostMapping("/weekly")
 	public GetWeeklySummaryResponse getWeeklySummary(@RequestBody GetWeeklySummaryRequest request) {
-		return issueService.getWeeklySummary(request);
+		return issueService.getSummary(request);
 	}
 }

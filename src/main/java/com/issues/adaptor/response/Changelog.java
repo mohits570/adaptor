@@ -1,5 +1,8 @@
 package com.issues.adaptor.response;
 
+import java.time.ZonedDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -16,7 +19,8 @@ import lombok.Data;
 public class Changelog {
 
 	@JsonProperty("changed_on")
-	private String changedOn;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd h:mma z")
+	private ZonedDateTime changedOn;
 	@JsonProperty("from_state")
 	private String fromState;
 	@JsonProperty("to_state")

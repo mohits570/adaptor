@@ -7,13 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.issues.adaptor.entity.IssueEntity;
+import com.issues.adaptor.entity.ChangeLogEntity;
 
 @Repository
-public interface IssueRepository extends JpaRepository<IssueEntity, String> {
-	
-	@Query(value = "SELECT i from IssueEntity i WHERE i.projectId= :projectId AND i.type IN (:types) AND  i.changeLogs.toState IN (:states)  AND i.changeLogs.yearWeek BETWEEN :fromYearWeek AND :toYearWeek ")
-	List<IssueEntity> getIssuesByProjectIdDateRangeTypesAndStates(@Param("projectId") String projectId,
+public interface ChangeLogRepository extends JpaRepository<ChangeLogEntity, String> {
+
+	@Query(value = "SELECT cl from ChangeLogEntity cl WHERE cl.issue.projectId= :projectId AND cl.issue.type IN (:types) AND  cl.toState IN (:states)  AND cl.yearWeek BETWEEN :fromYearWeek AND :toYearWeek ")
+	List<ChangeLogEntity> getChangeLogsByProjectIdDateRangeTypesAndStates(@Param("projectId") String projectId,
 			@Param("fromYearWeek") Integer fromYearWeek, @Param("toYearWeek") Integer toYearWeek,
 			@Param("types") List<String> types, @Param("states") List<String> states);
 }
